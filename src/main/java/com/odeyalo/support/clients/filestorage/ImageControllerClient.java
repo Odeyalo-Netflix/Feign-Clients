@@ -1,5 +1,6 @@
 package com.odeyalo.support.clients.filestorage;
 
+import com.odeyalo.support.clients.configuration.FileUploadFeignClientConfiguration;
 import com.odeyalo.support.clients.filestorage.dto.SuccessUploadImageResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.core.io.Resource;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @FeignClient(name = "image-controller-client",
-        url = "${app.clients.filestorage.image.urls.domain}")
+        url = "${app.clients.filestorage.image.urls.domain}", configuration = {
+        FileUploadFeignClientConfiguration.class
+})
 public interface ImageControllerClient {
 
     @GetMapping(value = "/{id}", produces = {MediaType.IMAGE_PNG_VALUE,
