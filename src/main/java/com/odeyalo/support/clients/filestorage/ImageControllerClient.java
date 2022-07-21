@@ -15,12 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 })
 public interface ImageControllerClient {
 
-    @GetMapping(value = "/{id}", produces = {MediaType.IMAGE_PNG_VALUE,
+    @GetMapping(value = "/{id}",
+            produces = {MediaType.IMAGE_PNG_VALUE,
             MediaType.IMAGE_GIF_VALUE,
             MediaType.IMAGE_JPEG_VALUE})
     Resource getImageById(@PathVariable("id") String imageId);
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<SuccessUploadImageResponseDTO> saveImage(@RequestPart MultipartFile file);
 
     @GetMapping(value = "/resize", produces = {MediaType.IMAGE_PNG_VALUE,
