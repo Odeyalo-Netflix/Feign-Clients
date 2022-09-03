@@ -1,6 +1,7 @@
 package com.odeyalo.support.clients.notification;
 
 import com.odeyalo.support.clients.notification.dto.EmailMessageDTO;
+import com.odeyalo.support.clients.notification.dto.TemplatedEmailMessageDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,4 +14,6 @@ public interface NotificationSenderClient {
     @PostMapping("/send")
     ResponseEntity<?> sendMail(@RequestBody EmailMessageDTO dto);
 
+    @PostMapping("/send/template")
+    ResponseEntity<?> sendTemplatedMail(TemplatedEmailMessageDTO dto);
 }
