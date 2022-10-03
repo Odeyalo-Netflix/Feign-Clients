@@ -2,6 +2,7 @@ package com.odeyalo.support.clients.filestorage;
 
 import com.odeyalo.support.clients.configuration.FileUploadFeignClientConfiguration;
 import com.odeyalo.support.clients.filestorage.dto.FileInformationResponseDTO;
+import com.odeyalo.support.clients.filestorage.dto.ImageFileInformationResponseDTO;
 import com.odeyalo.support.clients.filestorage.dto.ImageSuccessfulUploadedResponseDTO;
 import com.odeyalo.support.clients.filestorage.dto.SuccessUploadImageResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ImageControllerClient {
 
     @GetMapping(value = "/info/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<FileInformationResponseDTO> getImageInfoById(@PathVariable("id") String imageId);
+    ResponseEntity<ImageFileInformationResponseDTO> getImageInfoById(@PathVariable("id") String imageId);
 
     @GetMapping(value = "/{id}",
             produces = {MediaType.IMAGE_PNG_VALUE,
