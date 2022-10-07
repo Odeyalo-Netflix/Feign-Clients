@@ -3,6 +3,7 @@ package com.odeyalo.support.clients.filestorage;
 import com.odeyalo.support.clients.configuration.FileUploadFeignClientConfiguration;
 import com.odeyalo.support.clients.filestorage.dto.FileInformationResponseDTO;
 import com.odeyalo.support.clients.filestorage.dto.SuccessUploadVideoResponseDTO;
+import com.odeyalo.support.clients.filestorage.dto.VideoFileInformationResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.core.io.support.ResourceRegion;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ public interface VideoControllerClient {
     ResponseEntity<ResourceRegion> streamVideo(@RequestParam String videoId, @RequestHeader(name = "range", required = false) String range);
 
     @GetMapping(value = "/info/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<FileInformationResponseDTO> streamVideo(@PathVariable String id);
+    ResponseEntity<VideoFileInformationResponseDTO> infoAboutVideoFile(@PathVariable String id);
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<SuccessUploadVideoResponseDTO> saveVideo(@RequestPart(name = "video") MultipartFile file);
